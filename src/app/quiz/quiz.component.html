@@ -1,0 +1,18 @@
+<p>quiz works!</p>
+<div *ngIf="!end">
+  <h3>Question number   {{ currentQuestion + 1 }} of {{ questions.length }} total </h3>
+  <h2>{{ questions[currentQuestion].content}}</h2>
+
+  <ul class="list-group" *ngFor="let answer of questions[currentQuestion].otherAnswers">
+    <li class="list-group-item">
+      <label>
+        <input type="radio" name="chosenAnswer" (change)="onAnswer(answer)" [disabled]="answerSelected">
+        {{ answer }}
+      </label>
+    </li>
+  </ul>
+</div>
+<button (click)="showResult()">Show results</button>
+<div *ngIf="result">
+  <p>Correct answers {{ correctAnswers }} on {{ questions.length }}</p>
+</div>
