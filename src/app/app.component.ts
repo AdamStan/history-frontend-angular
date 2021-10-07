@@ -13,4 +13,8 @@ export class AppComponent {
   startQuiz(): void {
     this.quizStart = true;
   }
+
+  endQuiz(end: boolean): void {
+    this.quizStart = !end;
+  }
 }

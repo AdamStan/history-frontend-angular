@@ -5,6 +5,6 @@
     <button type="submit" (click)="startQuiz()"> Create Quiz </button>
   </div>
   <nav *ngIf="quizStart">
-    <app-quiz [amountOfQuestions]="amountOfQuestions"></app-quiz>
+    <app-quiz (endEmmiter)="endQuiz($event)" [amountOfQuestions]="amountOfQuestions"></app-quiz>
   </nav>
 </div>
