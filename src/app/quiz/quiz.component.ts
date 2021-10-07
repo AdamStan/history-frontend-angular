@@ -16,6 +16,7 @@ export class QuizComponent implements OnInit {
   result: boolean = false;
   end: boolean = false;
   @Output() endEmmiter: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() resultEmtter: EventEmitter<number> = new EventEmitter<number>();
 
   constructor(private quizService: QuizService) {
   }
@@ -28,6 +29,7 @@ export class QuizComponent implements OnInit {
     this.answerSelected = true;
     if (this.questions[this.currentQuestion].correctAnswer == chosenAnswer) {
       this.correctAnswers++;
+      this.resultEmtter.emit(this.correctAnswers);
     }
     setTimeout(() => {
       this.goToNextQuestion();
