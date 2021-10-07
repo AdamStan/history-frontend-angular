@@ -1,11 +1,10 @@
 <div>
   <h1> HiStoryQuiz </h1>
-  <form>
-    <label> Number of Questions: </label> <input type="number" name="number_of_questions">
-    <button type="submit"> Create Quiz </button>
-  </form>
-  <nav>
-    <a routerLink="/quiz"> Quiz </a>
-    <app-quiz></app-quiz>
+  <div>
+    <label> Number of Questions: </label> <input type="number" name="number_of_questions" [(ngModel)]="amountOfQuestions">
+    <button type="submit" (click)="startQuiz()"> Create Quiz </button>
+  </div>
+  <nav *ngIf="quizStart">
+    <app-quiz [amountOfQuestions]="amountOfQuestions"></app-quiz>
   </nav>
 </div>

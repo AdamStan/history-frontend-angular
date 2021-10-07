@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { QuizService } from '../quiz.service';
 import { Question } from '../quiz.service'
 
@@ -8,6 +8,7 @@ import { Question } from '../quiz.service'
   styleUrls: ['./quiz.component.css']
 })
 export class QuizComponent implements OnInit {
+  @Input() amountOfQuestions: number = 0;
   currentQuestion: number = 0;
   questions: Question[] = [];
   answerSelected: boolean = false;
@@ -19,7 +20,7 @@ export class QuizComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.questions = this.quizService.getQuestions();
+    this.questions = this.quizService.getQuestions(this.amountOfQuestions);
   }
 
   onAnswer(chosenAnswer: String): void {

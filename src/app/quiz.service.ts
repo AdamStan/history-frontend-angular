@@ -11,11 +11,12 @@ export interface Question {
   providedIn: 'root'
 })
 export class QuizService {
-  data: Question[] = exampleData;
+  // example data is an Object {} - I don't know if it should be used "Object.values"
+  data: Question[] = Object.values(exampleData);
 
   constructor() { }
 
-  getQuestions() : Question[] {
-    return this.data;
+  getQuestions(amount:number=10) : Question[] {
+    return this.data.slice(0, amount);
   }
 }

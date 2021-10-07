@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'history-frontend-angular';
+  amountOfQuestions: number = 10;
+  quizStart: boolean = false;
+
+  startQuiz(): void {
+    this.quizStart = true;
+  }
 }
