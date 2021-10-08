@@ -22,7 +22,9 @@ export class QuizComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.questions = this.quizService.getQuestions(this.amountOfQuestions);
+    this.quizService.getQuestionsFromServer(this.amountOfQuestions).subscribe((data: Question[]) => {
+      this.questions = data;
+    });
   }
 
   onAnswer(chosenAnswer: String): void {
