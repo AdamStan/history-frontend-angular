@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import  *  as exampleData from './mock/quiz.json';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-const BASE_URL = "http://localhost:8080";
 
 export interface Question {
   content: String;
@@ -23,6 +22,6 @@ export class QuizService {
   }
 
   getQuestionsFromServer(amount:number = 10) : Observable<Question[]> {
-    return this.http.get<Question[]>(BASE_URL + `/v1/questions/${amount}/`);
+    return this.http.get<Question[]>(`/quiz/v1/questions/${amount}/`);
   }
 }
