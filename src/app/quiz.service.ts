@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import  *  as exampleData from './mock/quiz.json';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, ObservableInput, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators'
 
 export interface Question {
   content: String;
@@ -22,6 +23,14 @@ export class QuizService {
   }
 
   getQuestionsFromServer(amount:number = 10) : Observable<Question[]> {
-    return this.http.get<Question[]>(`/quiz/v1/questions/${amount}/`);
+    return this.http.get<Question[]>(`/quiz/v1/questions/${amount}/`).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  handleError(error: HttpErrorResponse): ObservableInput<never> {
+    window.alert("There is a problem with getting a quiz, sorry for that :c")
+    console.error(error);
+    return throwError(error);
   }
 }
