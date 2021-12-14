@@ -1,14 +1,24 @@
-<div>
-  <h1> HiStoryQuiz </h1>
-  <div>
-    <label> Number of Questions: </label> <input type="number" name="number_of_questions" [(ngModel)]="amountOfQuestions">
-    <button type="submit" (click)="startQuiz()"> Create Quiz </button>
+<div class="container">
+  <div class="row top-buffer">
+    <h1 class="text-lg-center"> HiStoryQuiz </h1>
   </div>
-  <nav *ngIf="quizStart">
+  <div class="row top-buffer">
+    <div class="col-6">
+      <label> Number of Questions: </label> <input type="number" name="number_of_questions" [(ngModel)]="amountOfQuestions">
+    </div>
+    <div class="col-6">
+      <button class="btn btn-primary" type="submit" (click)="startQuiz()"> Create Quiz </button>
+    </div>
+  </div>
+  <div *ngIf="quizStart" class="row top-buffer">
     <app-quiz (endEmmiter)="endQuiz($event)" (resultEmtter)="sendResult($event)" [amountOfQuestions]="amountOfQuestions"></app-quiz>
-  </nav>
-  <button (click)="showResults()">Show results</button>
-  <div *ngIf="resultsAreReady">
+  </div>
+  <div class="row top-buffer">
+    <div class="col-6">
+      <button class="btn btn-primary" (click)="showResults()">Show results</button>
+    </div>
+  </div>
+  <div class="row top-buffer" *ngIf="resultsAreReady">
     <app-show-result [result]="result"></app-show-result>
   </div>
 </div>
